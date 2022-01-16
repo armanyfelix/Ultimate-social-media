@@ -1,7 +1,6 @@
-import axios from "axios";
 import { ReactElement } from "react";
 import Layout from "./components/layout/layout";
-import NestedLayout from "./components/layout/NestedLayout";
+import NestedLayout from "./components/layout/nestedLayout";
 import Sidebar from "./components/layout/sidebar";
 import ListView from "./components/listView";
 
@@ -29,7 +28,7 @@ function Home({ data }: { data: any }) {
   )
 }
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
   const res = await fetch(`https://pasteleriaaxiova-api.herokuapp.com/api/pasteles`)
   const data = await res.json()
 

@@ -1,11 +1,10 @@
-import { ChatIcon, DotsHorizontalIcon, GiftIcon, LinkIcon, ReplyIcon, ThumbDownIcon, ThumbUpIcon } from "@heroicons/react/outline";
-import UserCircleIcon from "@heroicons/react/outline/UserCircleIcon";
+import { UserCircleIcon } from "@heroicons/react/outline"
+// import { randomUUID } from "crypto";
 import Gun from "gun";
+import { useRecoilValue } from "recoil"
 
 
-function ListView({ data }: { data: any }) {
-
-
+function Create() {
 
   const db = Gun();
 
@@ -45,12 +44,12 @@ function ListView({ data }: { data: any }) {
   posts.forEach((p) => {
     db.get(p.id).put(p);
   })
-
+  
   const postNodes = posts.map(b => db.get(b.uuid))
 
 
   return (
-    <div className="text-white mt-10 flex flex-col items-center max-w-xl ">
+    <div className="w-72 h-72 absolute right-1/2 top-1/2 translate-x-1/2 bg-zinc-300 bg-opacity-70 backdrop-blur-md">
       <div className="flex p-2 ">
         <UserCircleIcon className="w-16 h-16 mr-2" />
         <div>
@@ -61,36 +60,8 @@ function ListView({ data }: { data: any }) {
           <p>{data.description.split('').splice(0, 100)}</p>
         </div>
       </div>
-      <div className="">
-        <img src={data.imageUrl} alt="content" className="w-[28rem] h-[34rem]" />
-      </div>
-      <div className="flex  w-full  justify-evenly m-2 ">
-        <button className=" inline-flex items-center ">
-          <ThumbUpIcon className="w-7 h-7" />
-          <span className="text-sm">10 mil</span>
-        </button>
-        <button className=" inline-flex items-center ">
-          <ThumbDownIcon className="w-7 h-7" />
-          <span className="text-sm">54</span>
-        </button>
-        <button className=" ">
-          <GiftIcon className="w-7 h-7" />
-        </button>
-        <button className=" inline-flex items-center ">
-          <ChatIcon className="w-7 h-7" />
-          <span className="text-sm">423</span>
-        </button>
-        <button className=" inline-flex items-center ">
-          <img src="https://img.icons8.com/external-outline-juicy-fish/28/FFFFFF/external-share-arrows-outline-outline-juicy-fish.png" />
-          <span className="text-sm">994</span>
-        </button>
-        <button className=" inline-flex items-center ">
-          <DotsHorizontalIcon className="w-7 h-7" />
-        </button>
-
-      </div>
     </div>
   )
 }
 
-export default ListView
+export default Create
